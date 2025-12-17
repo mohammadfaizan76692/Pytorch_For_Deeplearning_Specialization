@@ -44,7 +44,19 @@ and evaluate on validation set and return metric which you want to optimize.
 3) Creating optuna study , and optimize study with number to trials and objective function.  
    for More refer ugraded lab3 in Module1  
 
-In Lab4:  
+In Lab4:   
+Deployment metrics : Inference Time, Memory foot print( model size) , Model performance Metric
+using defferent model find all the above values for each model  
+Inference time : warm jsut run model for some few examples, then run the model n times with the data , then sum time take average_time = total_time/n
+Memory : [params*params_size from model.parameters()  +  buffer*buffer_size from model.buffers()]//(1024**2) # byte to mb
+Model performance Metric : Metric for which you are optimizing your model
+
+There are Two types you can select best model for your need  
+1) Contraint based : Removing all the model which does lie under these contraint and choose model which have high accuracy.  
+2) Weighted score based : first defined weightage for all metric you want than normalizing all the metric of  Deployment  
+          [0,1] -> val-min_val/(max_val-min_val) , for metric you want to decrease = 1 - ((val -min_val)/(max_val- min_val))    
+
+
 
 
 

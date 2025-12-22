@@ -57,8 +57,19 @@ There are Two types you can select best model for your need
           [0,1] -> val-min_val/(max_val-min_val) , for metric you want to decrease = 1 - ((val -min_val)/(max_val- min_val))    
 
 
+Graded Assignment : Developed AI/Fake Images Detector.
+1) Using FlexibleCNN architecture:  
+      HyperParameters : number_of_layers, kernel_size for each layer, no_of_filters for each layer, linear_size  for classifier_layer, batch_size, Resolution(for cropping).   
 
+2) Defining Search space for HyperParameters using Trial.suggest().   
+  
+3) Objective function : for optimizing the model with metrics.  
 
+4) Efficiency Metrics: calculating Number of Train of Trainable Parameters for Each Model and corresponding Accuracy.  
+
+5) Visualizing How Number of trainable Parameters for each model effecting Accuracy.
+
+6) In option Also adding Precision to Reduce FP, and Recall to Reduce False Negative  and then visualizing  which model has best Precision and Recall
 
 
 

@@ -72,6 +72,24 @@ Graded Assignment : Developed AI/Fake Images Detector.
 6) In option Also adding Precision to Reduce FP, and Recall to Reduce False Negative  and then visualizing  which model has best Precision and Recall
 
 
+Module2:
+Learning Vision Specific Support In torch , specifically torchvision
+
+
+In Lab1:
+Torch Vision Transforms
+1) Resize : Resizing : contracting and stracehing image ,... Crop : cutting image -> For making consistent image Data  
+2) for Augmentation RandomResizeCrop, Random flips and colorJitter and many more  
+3) ToTensor() -> PIL to tensor , heightXwidth -> (c, height, width ), with normalized pixel values 0 to 1  
+4) Normalize(mean[], std[]), in each column to shifting mean to zero and std to 1   
+5) decode_image -> direct read any image as to tensor from torchvision.io    
+6) make_grid -> taking batch of images, and show them in grid way from torchvision.utils    
+7) save_image -> taking tensor image and save at specified path    
+8) calculating mean and std for each channel in dataset  
+9) combining all transforms in pipeline using transforms.Compose()  
+10) creating custom transform function , example salt pepper ,  randomly converting pixel zero to one  
+
+
 
 
 

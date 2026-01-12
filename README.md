@@ -89,6 +89,28 @@ Torch Vision Transforms
 9) combining all transforms in pipeline using transforms.Compose()  
 10) creating custom transform function , example salt pepper ,  randomly converting pixel zero to one  
 
+In Lab2
+torvision Dataset learning, prebuilt dataset loading and inspection
+1) directly download vision datasets.
+2) dataset.transform = defined_tansformed.
+3) Some dataset like emnist have unique requirements, have to handled differently. (when downloading need to specify split).
+4) for custom data, ImageFolder can be used but each subfolder is class and corresponding images. And will be used as Dataset
+	fruit_dataset = datasets.ImageFolder(root=root_dir,
+		                             transform=image_transformation
+		                            )
+5) Creating Fake Dataset for debugging Architecture
+	Initialize the FakeData dataset 
+      ```python
+      from torchvision import datasets
+
+      # Initialize the FakeData dataset
+      fake_dataset = datasets.FakeData(
+      size=1000,                     # Total number of fake images
+      image_size=(3, 32, 32),        # (Channels, Height, Width)
+      num_classes=10,                # Number of possible classes
+      transform=fake_data_transform  # Apply the transformation
+      )
+      ```
 
 
 

@@ -111,7 +111,52 @@ torvision Dataset learning, prebuilt dataset loading and inspection
       transform=fake_data_transform  # Apply the transformation
       )
       ```
+In Lab3
+torch visions, utils functions
+1) utiltiy for Annotation
 
+  Drawing Bonding boxes for task like object detection** 
+  
+      ```python
+      from torchvision import utils as vutils
+      result = vutils.draw_bounding_boxes(image=image, 
+                                          boxes=boxes, 
+                                          labels=labels,           # This is optional
+                                          colors=["red", "blue"],  # This is optional. By default, random colors are generated for boxes.
+                                          width=3                  # This is optional. The default is width=1
+                                    )
+            ```
+
+   Drawing Segmentation MasK  
+
+      ```python
+      ## object mask  is of shape (num_of_masks, h,w) , values are true and false, and true value will be masked with given color
+      result  = vutils.draw_segmentation_masks(image=image,
+                                          masks=object_mask,
+                                          alpha=0.5,          # This is optional. The default is alpha=0.8
+                                          colors=["blue"]     # This is optional. By default, random colors are generated for each mask.
+                                          )
+      ```
+                                        
+                                        
+2) Already Available trained Architectures for Different Vision task can be Used 
+	1) If task is similar can directly Use them  : (Inference (Out-of-the-Box Prediction)
+	2) If task are not similar, Will Do Fine Tuning, using Model learning initial learning like edge and feature detection and  finetune for our purpose (Transfer learning)
+	
+	Some Example Models
+	Image Classification: Answers the basic question: 'What is the main subject of this image?'
+	Models: ResNet, VGG, AlexNet, SqueezeNet, MobileNetV3, DenseNet
+	Image Segmentation: Goes deeper to ask: 'What is the exact pixel-by-pixel shape of each object?'
+	Models: FCN, DeepLabV3
+	Object Detection: Finds all recognizable objects in an image, draws a box around each one, and classifies them.
+	Models: Faster R-CNN, RetinaNet, SSD
+	Video Classification: Understands action and movement by classifying entire video clips.
+	Models: R(2+1)D 18, MC3 18, Video MViT
+	
+	3) Reading classes and names on Which that model have trained using .meta attributes of weights of Model
+
+
+      
 
 
 

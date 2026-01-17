@@ -89,7 +89,7 @@ Torch Vision Transforms
 9) combining all transforms in pipeline using transforms.Compose()  
 10) creating custom transform function , example salt pepper ,  randomly converting pixel zero to one  
 
-In Lab2
+In Lab2:
 torvision Dataset learning, prebuilt dataset loading and inspection
 1) directly download vision datasets.
 2) dataset.transform = defined_tansformed.
@@ -111,7 +111,7 @@ torvision Dataset learning, prebuilt dataset loading and inspection
       transform=fake_data_transform  # Apply the transformation
       )
       ```
-In Lab3
+In Lab3:
 torch visions, utils functions
 1) utiltiy for Annotation
 
@@ -125,7 +125,7 @@ torch visions, utils functions
                                           colors=["red", "blue"],  # This is optional. By default, random colors are generated for boxes.
                                           width=3                  # This is optional. The default is width=1
                                     )
-            ```
+      ```
 
    Drawing Segmentation MasK  
 
@@ -155,8 +155,30 @@ torch visions, utils functions
 	
 	3) Reading classes and names on Which that model have trained using .meta attributes of weights of Model
 
+In Lab4: 
+Transfer Learning Strategies
+Using a pre-trained model for inference is powerful, but its true potential is unlocked when you adapt it for a new, custom task. This process, called transfer learning.
+Three Ways of Transfer learning
+1) Feature Extraction: Freezing the model's backbone and training only the new classifier head.
+      Extracting classifier head can be Modular or attribute of Model, and change it according  to you class.
+      In optimizer will pass only those weights where required_grad = True
 
-      
+2) Fine-Tuning: Unfreezing and training the top layers of the backbone for better adaptation.
+            Unfreeqing = making required_grad  = True
+
+3) Full Retraining: Training the entire model end-to-end for maximum performance.
+      retrain the whole parameters after changing classifier layer (compuational expensive)
+
+
+Graded Assignment: Imporving Fake Image Finder Using Transfer Learning Strategies
+
+Improving FakeImage Finder
+
+1) Using ImageFolder for Dataset creation.
+2) Create Custom transforms.
+3) Apply Transfer learning ("feature Extraction") Using MobileNetV3-Large architecture.
+	
+
 
 
 

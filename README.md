@@ -177,6 +177,20 @@ Improving FakeImage Finder
 1) Using ImageFolder for Dataset creation.
 2) Create Custom transforms.
 3) Apply Transfer learning ("feature Extraction") Using MobileNetV3-Large architecture.
+
+Module3: 
+NLP with Pytorch and Hugging Face
+In Lab1:
+Tokenizers
+1) Creating simple Vocabulary.
+2) Pretrained Tokenizer, BERT (Bi-Directional Encoder Representation from Transformers)  [BertTokenizerFast].
+3) Padding:  <PAD> adding to tokens to cosistent length, Truncation: trucating the sentence or document to make consistent length.
+4) tokenizer.convert_ids_to_tokens : converting index to tokens.
+5) tokenizer.get_vocab() # to gt the whole vocabulary.
+6) Attention Mask: [1, 1, 1, 0, 0] => 0 means it is padding no need of attention while processing that sentence in Model.
+7) AutoTokenizer: No Need To define each and every Model Tokennizer , just pass tokenizer from hugging face or downloaded it automatically Handled That.
+8) OOV: Out of Vocabulary Words ( Not in Vocubulary/built in dictionary) : Handle by splitting in small sub words , Musbi become ['mu', '##bs', '##i'] , ## mean they are part of one Whole Word.
+
 	
 
 

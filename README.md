@@ -192,7 +192,21 @@ Tokenizers
 8) OOV: Out of Vocabulary Words ( Not in Vocubulary/built in dictionary) : Handle by splitting in small sub words , Musbi become ['mu', '##bs', '##i'] , ## mean they are part of one Whole Word.
 
 	
-
+In Lab2:
+Tensorization : one hot encoding, bag of word(frequency count), tf -IDF,  Embeddings [Static Embeddings model like (glove) and Dynamic Embeddings (BERT)]
+1) Visualizing Glove Pretrained Embedding Relationship like : king - man + woman ~ queen
+2) Creating Embeddings for self Dataset Using nn.Embeddings 
+	creating similar word pairs  (words that sould be in one Category)
+	in pair taking one as input word, other as target word 
+	(input word, target word) - (input word - index ) -> embedding vector of nn.Embedding(Vocab_size, vector_size) ->  target word prediction vocubulary size final layer.
+	
+	training using CrossEntropy like classification.
+	
+3) Dyanmic vs Static 
+	bat animal 
+	baseball bat  
+	In static both are same embedding vectors : Visualized from Glove
+	but dynamic embeddings are different : visualized from BERT
 
 
 

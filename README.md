@@ -209,4 +209,18 @@ Tensorization : one hot encoding, bag of word(frequency count), tf -IDF,  Embedd
 	but dynamic embeddings are different : visualized from BERT
 
 
-
+In Lab3:
+Text Classification
+1) Text preprocessing, label processing, train_test_split to avoid data leakage.
+2) Vocabulary creation Using Python Class, with '<pad>','<unk>' token, word2idx() And idx2word(), encode(), build_vocab(), with min freq tokens will go into vocabulary.
+3) Custom Text-Dataset
+4) DataLoaders By collate function 
+	collate_fn is also the standard and most efficient method. While you could pad all sentences from the start, that approach is inefficient, leading to significant memory and computational waste. 
+	By using a collate_fn to perform "dynamic padding," each batch is only padded to the length of the longest sentence within that batch, which saves resources and speeds up training.
+	1) collate_batch_embeddingbag : [flatten_text, offest = starting index of each sentence in flatten_text, labels]
+		in these batches using - nn.EmbeddingBag
+	2) collate_batch_manual : [padded_text with max length in batch, labels]
+		in these batches manual pooling and nn.Embedding
+		 
+		
+5) Comparing Manual : max, mean, sum  and nn.EmbeddingBag  | | | Best Lab Till Now | | | 

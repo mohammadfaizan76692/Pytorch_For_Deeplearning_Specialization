@@ -143,7 +143,7 @@ Module4 : Core Neural Network Components
 10) Error logs, skipping bad example while picking and stats pf samplings
 
 ## Pytorch Techinques and EcoSystem Tools:
-Module1:  
+### Module1:  
 currently learn : Hyper parameter Tuning : Batch size, Learning Rate  
 
 In Lab1
@@ -192,7 +192,7 @@ Graded Assignment : Developed AI/Fake Images Detector.
 6) In option Also adding Precision to Reduce FP, and Recall to Reduce False Negative  and then visualizing  which model has best Precision and Recall
 
 
-Module2:
+### Module2:
 Learning Vision Specific Support In torch , specifically torchvision
 
 
@@ -446,7 +446,7 @@ Improving FakeImage Finder
 2) Create Custom transforms.
 3) Apply Transfer learning ("feature Extraction") Using MobileNetV3-Large architecture.
 
-Module3: 
+## Module3: 
 NLP with Pytorch and Hugging Face
 In Lab1:
 Tokenizers
@@ -534,3 +534,6 @@ Pretrained for same dataset in lab3
 6) Instead of full retraining have done finetuning only using last 2 transformer_layers
 
 7) comparing full retraining(full finetuning) and fine tuning(partial fine tunining) (Transfer learning Method)
+
+Graded Assignment
+

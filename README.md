@@ -232,7 +232,7 @@ Pretrained for same dataset in lab3
 2) loading model and tokenizer
 3) Creating Custom Dataset with bert tokenizer
 4) Data collator handles dynamic padding for each batch
-       	```python
+      ```python
        	data_collator = transformers.DataCollatorWithPadding(tokenizer=bert_tokenizer)
 	# Create the DataLoader for the training set with `data_collator`
 	train_loader = DataLoader(train_dataset, 

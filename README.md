@@ -224,3 +224,45 @@ Text Classification
 		 
 		
 5) Comparing Manual : max, mean, sum  and nn.EmbeddingBag  | | | Best Lab Till Now | | | 
+
+
+In Lab4:
+Pretrained for same dataset in lab3
+1) How Saving transformer model tokenizer and model
+2) loading model and tokenizer
+3) Creating Custom Dataset with bert tokenizer
+4) Data collator handles dynamic padding for each batch
+       	```python
+       	data_collator = transformers.DataCollatorWithPadding(tokenizer=bert_tokenizer)
+	# Create the DataLoader for the training set with `data_collator`
+	train_loader = DataLoader(train_dataset, 
+		                  batch_size=batch_size, 
+		                  shuffle=True, 
+		                  collate_fn=data_collator
+		                 )
+	```
+5) class weight from sklearn : from sklearn.utils.class_weight import compute_class_weight
+	```python
+	# Extract all labels from the training set to calculate class weights for handling imbalance.
+	train_labels_list = [train_dataset.dataset.labels[i] for i in train_dataset.indices]
+	    
+	    
+	# Use scikit-learn's utility to automatically calculate class weights.
+	class_weights = compute_class_weight(
+	    # The strategy for calculating weights. 'balanced' is automatic.
+	    class_weight='balanced',
+	    # The array of unique class labels (e.g., [0, 1]).
+	    classes=np.unique(train_labels_list),
+	    # The list of all training labels, used to count class frequencies.
+	    y=train_labels_list
+	)
+
+	# Convert the NumPy array of weights into a PyTorch tensor of type float
+	class_weights = torch.tensor(class_weights, dtype=torch.float).to(device)
+	# Initialize the CrossEntropyLoss function with the calculated `class_weights`.
+	loss_function = nn.CrossEntropyLoss(weight=class_weights)
+	
+	```
+6) Instead of full retraining have done finetuning only using last 2 transformer_layers
+
+7) comparing full retraining(full finetuning) and fine tuning(partial fine tunining) (Transfer learning Method)

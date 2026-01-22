@@ -446,7 +446,7 @@ Improving FakeImage Finder
 2) Create Custom transforms.
 3) Apply Transfer learning ("feature Extraction") Using MobileNetV3-Large architecture.
 
-## Module3: 
+### Module3: 
 NLP with Pytorch and Hugging Face
 In Lab1:
 Tokenizers

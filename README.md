@@ -535,5 +535,13 @@ Pretrained for same dataset in lab3
 
 7) comparing full retraining(full finetuning) and fine tuning(partial fine tunining) (Transfer learning Method)
 
-Graded Assignment
+Graded Assignment:
+Intent Classification
+1) Text Data Augmentation : Using  Back Translation Technique : l1 -> l2 and l2 -> l1' , and this l1' is new example for the same label of l1.
+2) Custom Dataset
+3) Collate fn  : Maintaining length consistency in Batches, using transformers.datacollatorwithpadding, Providing: Tokenizer as Input.
+4) complute_class_weight using sklearn.utils.class_weight.compute_class_weight and Implementing it by Myself : n_samples/(n_classes*(class_distribution))
+5)  partial fine-tuning (also known as parameter-efficient fine-tuning (PEFT)).
+6) Class Wise Evaluation 
+
 

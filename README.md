@@ -545,3 +545,14 @@ Intent Classification
 6) Class Wise Evaluation 
 
 
+### Module4:
+Efficient Training Pipeline  
+
+Building Effiecient Data Pipelines
+DataLoader Configuration Optimization
+For a constant Resource Increasing Efficiency , increase batches, or increases number of workers cpu cores 
+or enable pin memory or Increasing Prefecthfactor, to  decreasing GPU IDLE TIME and efficiently train Models to utilize GPU's
+
+Profiling
+Monitoring Training Loops to Pinpoint Potential bottlenecks that increasease Training Time
+Techinque like Gradient Accumulation and Mix-precision training Also help to Reduce that.

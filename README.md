@@ -556,3 +556,20 @@ or enable pin memory or Increasing Prefecthfactor, to  decreasing GPU IDLE TIME 
 Profiling
 Monitoring Training Loops to Pinpoint Potential bottlenecks that increasease Training Time
 Techinque like Gradient Accumulation and Mix-precision training Also help to Reduce that.
+
+Parameters in DataLoader
+*pin_memroy: True [Directly access Data From Ram , without making copy of Data] (space in Ram)
+*prefetch factor: Number of bacth already loaded in core per worker in cpu so GPU can Process them until Cpu Prepraring Next batches 
+*number of worker: number of cores going to prepare batches
+*batch_size: number of samples per batch 
+
+if prefetch factor = 2, core =6, 6*2=12 batches, already Preloaded
+
+Lab1:
+Optimizing DataLoaders for Performance (Building Effiecient Data Pipelines)
+
+1) Investigate how enabling parallel data processing can dramatically reduce GPU idle time.
+
+2) Measure the impact of batching on processing speed and discover its relationship with hardware memory limits.
+
+3) Experiment with fine tuning parameters that can accelerate data transfer and manage data buffering for additional performance gains.

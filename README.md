@@ -573,3 +573,97 @@ Optimizing DataLoaders for Performance (Building Effiecient Data Pipelines)
 2) Measure the impact of batching on processing speed and discover its relationship with hardware memory limits.
 
 3) Experiment with fine tuning parameters that can accelerate data transfer and manage data buffering for additional performance gains.
+
+Lab2:
+Pytorch Lighting Introduction
+import lightning.pytorch as pl
+from lightning.pytorch.profilers import PyTorchProfiler
+from torch.profiler import schedule
+
+1) In lighting we define Data and Model Modules classes , for Data we Inherit pl.LightningDataModule, And For Model We Inherit pl.LightiningModule
+2) For  Data Modules Essential Methods: 
+	a) __init__(), specification for Data pipelines like batch size, num_workers, transforms etc.
+	b) preprare_data(), for  Downloading data
+	c) setup(), creating and splitting Datasets
+	d) train_dataloader(), return train dataloader
+	e) val_dataloader(), return validation dataloader
+	
+3) For Model Modules Essential Methods:
+	a) __init__(), passing Hyparameters of Model and training hyperparameters also (lr, weight decay)
+		saving hyperparameters, and defining Model, loss_fun, metric for evaluation.
+	b) forward(self,x) : simple forward pass : self.model(x) : making self forwad pass().
+	c) training_step(self, batch, batch_idx=None) : traing step for single batch just calculate loss , back prop handled by lighting itself (self(input)) for forward pass.
+	d) validation_step(self, batch, batch_idx=None): Same logic but for validation batch.
+	e)configure_optimizers(self) : return Optimizer with all the provided hyperparmeters.
+	
+after creating modelModule and dataModule, passing to pytorch light lighting fit module
+```python
+    # Initialize a Lightning Trainer with specified configurations
+    trainer = pl.Trainer(
+        max_epochs=epochs,
+        accelerator="auto",
+        devices=1,
+        logger=False,
+        enable_progress_bar=True,
+        enable_model_summary=False,
+        enable_checkpointing=False,
+    )
+
+    # Begin the model training process
+    trainer.fit(model, data_module)
+
+    # Extract final metrics from the trainer after fitting
+    final_metrics = {
+        "train_accuracy": round(
+            trainer.callback_metrics["train_accuracy"].item() * 100, 2
+        ),
+        "val_accuracy": round(trainer.callback_metrics["val_accuracy"].item() * 100, 2),
+    }
+    
+    ## get train_accuracy and val_accuracy are getting form log defined in training_step and validation_step
+   
+  
+```
+
+4) Is This Model Too Complex for the Dataset? How we can Answer Without full training, so before training We can Make Some Changes.
+
+Learning About Profiling From Now on
+
+5) Profiling is the process of analyzing your code to get a detailed breakdown of where it spends the most time and resources, like CPU cycles, GPU time, and memory.
+ this analysis is the key to confirming your hypothesis about the model's complexity and finding any performance bottlenecks, the specific parts of your code that are disproportionately slow.
+ 
+Star Point : Not for All Epochs Just For max_steps, which is total number of batches
+
+In Lab3:
+*Gradient Accumualtion: Idea of Effective batch learning 
+*Mixed Precision Learning: 32bit  to 16 bit
+*Build a custom Callback to reliably measure key performance metrics like peak GPU memory and validation accuracy.
+*Encapsulate the core training logic by configuring the Lightning Trainer with memory-efficient parameters.
+*Systematically benchmark the different techniques against a baseline to gather empirical data.
+*Analyze the trade-offs between memory usage and model performance to make data-driven decisions.
+
+```from lightning.pytorch.callbacks import Callback```
+
+Callback
+A Callback is an object that can hook into the training process at various points, like the beginning of an epoch or the end of a training run,
+to execute your custom code. This is an essential tool for logging, monitoring, or in this case, performance measurement.
+
+1) Creating Custom Callback for performance investigation, run_training() function for creating trainer object of lighting for each experiment. 
+	1: logging peak memory for last epoch of training
+	2: logging validation accuracy for every epoch
+	
+
+2) Runing Experiment , on Gradient accumulation , grad_accum  =effective_bacth_size//batch, precision: 16 bit or 32 bit,
+3) Finding Best configuration by looking at peak memory in last epoch training run.
+
+
+Graded Assignments
+```from lightning.pytorch.callbacks import EarlyStopping```
+
+1) Creating Global Train and Test Transforms, and Create Dataset, load dataloader helper function will then Use in DataModule class of Lightning, inherited this class '''pl.LightningDataModule''' 
+2) creating load_resnet18(num_classes, weights_path): classifier head replace with new number of classes we want to classify and freezing Non classifier parameters just unfreezing classfier parameters.
+3) creating define_optimizer_and_scheduler(model, learning_rate, weight_decay): initializing Adam Optimizer and ReduceLROnPlateau() scheduler
+4) Using Model define in Step 2 and optimizer defined in step for Creating ModelModule class of Lighting
+5) cross entropy loss directly uses logits and torch.metrics also directly uses  logits
+6) Train model using pytorch lighting Trainer and self defined early stopping call back
+7) Visualizing the Results

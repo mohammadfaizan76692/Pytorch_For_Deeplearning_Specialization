@@ -665,5 +665,5 @@ Graded Assignments
 3) creating define_optimizer_and_scheduler(model, learning_rate, weight_decay): initializing Adam Optimizer and ReduceLROnPlateau() scheduler
 4) Using Model define in Step 2 and optimizer defined in step for Creating ModelModule class of Lighting
 5) cross entropy loss directly uses logits and torch.metrics also directly uses  logits
-6) Train model using pytorch lighting Trainer and self defined early stopping call back
+6) Train model using pytorch lighting Trainer and self defined Early Stopping CALLBACK
 7) Visualizing the Results

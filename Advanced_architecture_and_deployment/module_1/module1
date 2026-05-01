@@ -1,0 +1,125 @@
+Course 3  Module1 Self Notes
+
+Module1 : Designing Custom Architectures (All with the help of pytorch Dynamic Graph, for each forward pass)
+
+1) Custom Architectures
+
+	until Now We was Using Linear Models
+	
+Multi in -> Multi out : Image + metadeta , without creating two different model differently and concat the output from them and pass it to third model, using those two create 
+		whole new model with encodor of image and encoder of metadeta(text) is a part of model itself and combine those and pass it through the forward pass and then concat
+		the vectors and pass through different network for classification type1 of [image and metadata] and other  classification   type2
+		
+		
+Parameter Sharing-> same encoder for different image if we want find these two images are same or not.
+
+Conditional Execution -> using if or else condition in network architecture , forward pass will on that basis.
+
+Dyanimacally Model Creation -> for given number of layer taking number of layers and other thing as parameter to create dynamic model.
+
+
+Siamese Network [same embedding network or encoder]
+anchor -> embedd_net -> a
+positive -> embedd_net -> p
+negative -> embedd_net -> n
+
+***********************************************************************************************************************************
+Now Loss function  helps to a and p closer and making a and n apart, that how embedding space generated
+Two loss function  for siamese network
+1) Contrastive Pair loss
+D : distance between pairs 
+y is 0 if different pairs 1 if pairs are same.
+L = (1-y)*D^2 + y.max(0, m-D)^2 
+
+**************************************************************************************************************************************
+2) Triple Margin loss
+Distance between [Anchor and Positive] and  Distance between [Anchor and Negative] should have at least Margin distance
+
+||F(A) - F(P)||^2 - ||F(A) - F(N)||^2 + alpha(margin) <=0   -> ||F(A) - F(P)||^2 + alpha(margin) - ||F(A) - F(N)||^2 <=0 
+
+-> Loss(A,P,N) = MAX(||F(A) - F(P)||^2 + alpha(margin) - ||F(A) - F(N)||^2, 0) : Triplet Margin Loss
+OR 
+||F(A) - F(N)||^2 -||F(A) - F(P)||^2 <= alpha
+
+Ungraded Lab: Applied Similarity Learning: Signatures and Satellites
+Building models that are robust enough to handle this "data noise" is a fundamental skill for any AI professional.
+1) Signature Varification System : Use Triple Margin Loss 
+2) Statellite images to detect chnage in greenery : Used Weighted Contrastive Pair Loss
+
+*************************************************************************************************************************************
+ResNet
+Deeper  the Network gradient Vanishing Start, initals weights neuron stops to learn the signal.
+due chain rule in differentiation : dL/d(w) = (dL/dy)*(dy/da) ............*dn/dw
+
+before 
+y = f(x)
+dy/dx = df(x)/d(x),
+dL/dx = dL/da * da/db* db/dc ............dy/dx
+dL/dx = C*dy/dx = C*df(x)/dx
+
+After Adding Input
+y = f(x) + x
+dy/dx = df(x)/dx +1
+dL/dx = C*(dy/x) = C*df(x)/dx + C -> it helps to make signal alive/gradient alive
+
+## Idealogy
+INPUT + OUTPUT (from block) -> nudjing (adjusting the input by output to make it more correct)
+
+Ungraded Lab(Resnet):
+Building PlainCNN and Simple Resnet and Comparing Performance
+Dataset : skyview-an-aerial-landscape-dataset
+
+nn.AdaptiveAvgPool2d((1, 1)): Applying avg pooling suh that final result have window (1,1)
+
+Doing Downpooling using conv2d kernel(1,1) and and with stride to match the size with output by con2d block
+
+
+Start lirary gives Number of Trainable Pramaetes and input and output shape after each layer
+torchinfo Library : Output shape flow before training 
+		    Parameter Count
+		    
+
+*****************************************************************************************************************************************
+Dense Net : [Dense layers] -> [Dense Block] -> [transitionLayer](1x1 kernel for reducing channel and adaptive average pool for height and width)
+
+Ungraded Lab:
+Building Dense Net and For a very Small Datasets.
+
+
+
+ ***********************************************************************************************************************************************
+ GRADED LAB: Classifying Cloth Item and Visual Search Engine.
+ 
+Implement the InvertedResidualBlock, the efficient core component inspired by MobileNetV2, practicing custom module creation.
+Construct a MobileNetBackbone by stacking your custom blocks, demonstrating modular network assembly.
+Build and train a MobileNetLikeClassifier using the backbone for multi-class fashion item categorization, applying techniques like weighted loss for imbalance.
+Design a TripleDataset to generate anchor, positive, and negative examples, setting the stage for similarity learning.
+Engineer a SiameseEncoder by reusing the trained backbone from your classifier, showcasing architectural flexibility.
+Assemble and train a SiameseNetwork using TripletMarginLoss to create a meaningful embedding space for visual similarity.
+Apply your trained Siamese network to perform visual search, retrieving similar fashion items from a catalog based on image embeddings.
+
+Oragnising Product Catalog and can help in filter search.
+
+Mobile net v2
+
+ResNet                    MobileNetV2
+
+256 → 64 → 256            32 → 192 → 32
+
+WIDE → NARROW → WIDE      NARROW → WIDE → NARROW
+compress → process        expand → process
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
